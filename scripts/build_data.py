@@ -6,7 +6,6 @@ from __future__ import annotations
 import json
 import shutil
 import sys
-from datetime import UTC, datetime
 from pathlib import Path
 
 import pandas as pd
@@ -75,7 +74,7 @@ def main() -> None:
     )
     forecast = forecast_snapshot(hourly)
     forecast["diagnostics"] = forecast_diagnostics
-    forecast["snapshot_generated_at"] = datetime.now(UTC).isoformat()
+    forecast["source_data_as_of"] = last_finished.isoformat()
     forecast["limitation"] = (
         "Static snapshot forecast. The repository has no approved live API token; "
         "predictions are anchored to the final complete hour in the downloaded CSV."
@@ -84,7 +83,7 @@ def main() -> None:
     print(f"Forecast origin: {forecast['origin']}")
 
     metadata = {
-        "generated_at": datetime.now(UTC).isoformat(),
+        "source_data_as_of": last_finished.isoformat(),
         "source_csv": str(RAW_CSV.relative_to(ROOT)),
         "load_diagnostics": load_diagnostics,
         "raion_diagnostics": raion_diagnostics,
