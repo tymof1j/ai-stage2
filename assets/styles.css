@@ -359,6 +359,11 @@ button:focus-visible, input:focus-visible, a:focus-visible {
 .forecast-metrics { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
 .forecast-metrics div { padding-top:20px; border-top:1px solid var(--line-strong); }
 .forecast-metrics strong { font-size:clamp(2.2rem,3.6vw,3.7rem); }
+.forecast-metrics .forecast-verdict { grid-column:1 / -1; padding-bottom:24px; border-bottom:1px solid var(--line); }
+.forecast-verdict strong { color:var(--accent); }
+.forecast-verdict strong[data-level="low"] { color:#8fb8a8; }
+.forecast-verdict strong[data-level="moderate"] { color:#c3aa78; }
+.forecast-verdict strong[data-level="high"] { color:#df6e5d; }
 .forecast-chart-section { margin-top:62px; }
 .forecast-chart { min-height:430px; }
 .forecast-detail-grid { display:grid; grid-template-columns:minmax(0,1.2fr) minmax(320px,.8fr); gap:80px; margin-top:110px; }

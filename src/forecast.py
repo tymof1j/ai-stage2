@@ -225,11 +225,23 @@ def forecast_snapshot(hourly: pd.DataFrame, max_horizon: int = 6) -> dict:
         {"timestamp": timestamp.isoformat(), "load": round(float(value), 4)}
         for timestamp, value in hourly.loc[last_origin - pd.Timedelta(days=14) : last_origin, "load"].items()
     ]
+    reference = hourly.loc[hourly.index < validation_start, "load"]
+    thresholds = np.quantile(reference, [0.25, 0.50, 0.75])
+    outlook_mean = float(np.mean([row["point"] for row in predictions if row["horizon"] >= 3]))
+    outlook_index = int(np.searchsorted(thresholds, outlook_mean, side="right"))
+    outlook_labels = ("Низьке", "Помірне", "Середньо-високе", "Високе")
     return {
         "origin": last_origin.isoformat(),
         "current_load": round(float(hourly.loc[last_origin, "load"]), 4),
         "predictions": predictions,
         "evaluations": evaluations,
+        "outlook": {
+            "label": outlook_labels[outlook_index],
+            "level": ("low", "moderate", "medium-high", "high")[outlook_index],
+            "mean_load": round(outlook_mean, 4),
+            "reference_quartiles": [round(float(value), 4) for value in thresholds],
+            "horizons": [3, 4, 5, 6],
+        },
         "history": history,
         "validation_start": validation_start.isoformat(),
         "test_start": test_start.isoformat(),

@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   try {
     const data = await A.fetchJSON("site-data/forecast.json");
     renderSnapshot(data);
-    renderMetrics(data.predictions);
+    renderMetrics(data);
     renderChart(data);
     renderEvaluation(data.evaluations);
     loading.hidden = true;
@@ -19,7 +19,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("snapshot-copy").textContent = `Останній запис CSV: ${last}; остання повна година моделі: ${origin}. Live API token очікує окремого схвалення.`;
   }
 
-  function renderMetrics(predictions) {
+  function renderMetrics(data) {
+    const predictions = data.predictions;
+    const level = document.getElementById("forecast-level");
+    level.textContent = data.outlook.label;
+    level.dataset.level = data.outlook.level;
+    document.getElementById("forecast-level-detail").textContent = `середнє ${A.formatNumber(data.outlook.mean_load * 100, 1)}% моніторених районів`;
     for (const horizon of [3, 6]) {
       const row = predictions.find((item) => item.horizon === horizon);
       document.getElementById(`forecast-${horizon}h`).textContent = `${A.formatNumber(row.point * 100, 1)}%`;

@@ -20,6 +20,11 @@ title-block-banner: false
       <p class="hero-lead">Модель оцінює частку моніторених районів, які перебуватимуть під тривогою. Вона не прогнозує удари й не є сигналом безпеки.</p>
     </div>
     <div class="forecast-metrics">
+      <div class="forecast-verdict">
+        <span>Загальне навантаження · наступні 3–6 год</span>
+        <strong id="forecast-level">—</strong>
+        <small id="forecast-level-detail">Порівняння з історичними квартилями</small>
+      </div>
       <div><span>Через 3 години</span><strong id="forecast-3h">—</strong><small id="forecast-3h-range">—</small></div>
       <div><span>Через 6 годин</span><strong id="forecast-6h">—</strong><small id="forecast-6h-range">—</small></div>
     </div>
