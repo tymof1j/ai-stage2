@@ -45,4 +45,4 @@ format:
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
         <script src="assets/common.js?v=4"></script>
-        <link rel="stylesheet" href="assets/styles.css?v=4">
+        <link rel="stylesheet" href="assets/styles.css?v=5">

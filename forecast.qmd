@@ -39,6 +39,7 @@ title-block-banner: false
       <div><span>Корисність</span><strong>планування навантаження на 3–6 год</strong></div>
       <div><span>Ризик</span><strong>нижчий, бо немає прогнозу місця удару</strong></div>
     </div>
+    <p class="deftech-note">У deftech/miltech контексті це радше lightweight nowcast для operational awareness: він може допомогти оцінити загальне навантаження на моніторинг, комунікацію й чергування. Для цивільних це пояснювальний індикатор історичного та поточного burden, але не підказка щодо безпеки.</p>
   </section>
 
   <section class="forecast-chart-section">

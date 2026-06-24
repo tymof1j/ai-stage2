@@ -425,6 +425,48 @@ button:focus-visible, input:focus-visible, a:focus-visible {
 .chapter-list a { color:var(--muted); font-size:.78rem; font-weight:620; text-decoration:none; border-bottom:1px solid var(--line-strong); justify-self:end; }
 .chapter-list a:hover { color:var(--ink); }
 
+/* Impact / pitch */
+.impact-section {
+  max-width: 1480px;
+  margin: 0 auto;
+  padding: 0 clamp(22px,4.7vw,76px) 124px;
+  display:grid;
+  grid-template-columns:minmax(280px,.78fr) minmax(0,1.22fr);
+  gap:clamp(42px,7vw,96px);
+}
+.impact-lead {
+  position:sticky;
+  top:calc(var(--nav-height) + 28px);
+  align-self:start;
+}
+.impact-lead h2 { margin:18px 0 22px; max-width:12ch; }
+.impact-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); border-top:1px solid var(--line); border-left:1px solid var(--line); }
+.impact-grid article {
+  min-height:260px;
+  padding:28px;
+  border-right:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  background:linear-gradient(180deg, rgba(255,255,255,.018), rgba(255,255,255,0));
+}
+.impact-grid article > span {
+  display:block;
+  color:var(--accent);
+  font-family:"Geist Mono",monospace;
+  font-size:.7rem;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  margin-bottom:28px;
+}
+.impact-grid h3 { margin:0 0 16px; font-size:1.45rem; line-height:1.02; max-width:13ch; }
+.impact-grid p { margin:0; font-size:.9rem; }
+.civilian-impact { background:rgba(213,101,84,.055) !important; }
+.deftech-note {
+  margin-top:24px;
+  padding-top:20px;
+  border-top:1px solid var(--line);
+  font-size:.9rem;
+}
+
 /* Reproducibility report */
 #quarto-content:not(.page-layout-full) { max-width:1160px; margin:0 auto; padding:58px 28px 100px; }
 #quarto-content:not(.page-layout-full) .quarto-title-block { display:block; }
@@ -464,6 +506,11 @@ button:focus-visible, input:focus-visible, a:focus-visible {
   .chapter-overview { grid-template-columns:1fr; padding:62px 18px 82px; }
   .chapter-list article { grid-template-columns:1fr; gap:10px; }
   .chapter-list a { justify-self:start; }
+  .impact-section { grid-template-columns:1fr; padding:0 18px 82px; }
+  .impact-lead { position:static; }
+  .impact-grid { grid-template-columns:1fr; }
+  .impact-grid article { min-height:auto; padding:22px 0; border-left:0; border-right:0; background:transparent; }
+  .impact-grid article > span { margin-bottom:16px; }
   .analysis-page { padding:40px 18px 80px; }
   .analysis-hero { padding-bottom:36px; }
   .analysis-strip { grid-template-columns:1fr; }
