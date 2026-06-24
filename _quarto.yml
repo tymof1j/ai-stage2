@@ -1,0 +1,48 @@
+project:
+  type: website
+  output-dir: _site
+  resources:
+    - assets/**
+    - site-data/**
+
+website:
+  title: "Air Alert Atlas"
+  site-url: "https://tymof1j.github.io/ai-stage2/"
+  repo-url: "https://github.com/tymof1j/ai-stage2"
+  navbar:
+    pinned: true
+    left:
+      - href: index.qmd
+        text: Архів
+      - href: savings.qmd
+        text: Ефект локалізації
+      - href: forecast.qmd
+        text: Прогноз 3–6 год
+    right:
+      - href: report.qmd
+        text: Методологія
+      - icon: github
+        href: "https://github.com/tymof1j/ai-stage2"
+        aria-label: GitHub
+  page-footer:
+    left: "Air Alert Atlas · snapshot research project"
+    right:
+      - text: "Методологія"
+        href: report.qmd
+      - text: "Дані та код"
+        href: "https://github.com/tymof1j/ai-stage2"
+
+format:
+  html:
+    theme: darkly
+    css: assets/styles.css
+    lang: uk
+    toc: false
+    smooth-scroll: true
+    link-external-newwindow: true
+    include-in-header:
+      text: |
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+        <script src="assets/common.js"></script>

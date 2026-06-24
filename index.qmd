@@ -1,0 +1,73 @@
+---
+title: "Архів повітряних тривог"
+description: "День за днем: кількість, тривалість і нічне навантаження по областях та районах України."
+page-layout: full
+title-block-banner: false
+---
+
+```{=html}
+
+<main class="map-page" aria-labelledby="history-page-title">
+  <div id="history-map" class="map-canvas" aria-label="Інтерактивна карта історії повітряних тривог"></div>
+
+  <section class="map-panel history-panel" aria-label="Керування картою">
+    <div class="eyebrow"><span class="status-mark"></span> Офіційний CSV · архів</div>
+    <h1 id="history-page-title">Архів тривог</h1>
+    <p class="panel-copy">Оберіть день і порівняйте унікальний час під тривогою між регіонами.</p>
+
+    <div class="date-navigator">
+      <button id="date-prev" class="icon-button" type="button" aria-label="Попередній день" data-tooltip="Попередній день">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18 9 12l6-6"/></svg>
+      </button>
+      <label class="date-field">
+        <span>Дата</span>
+        <input id="history-date" type="date" aria-label="Дата для карти">
+      </label>
+      <button id="date-next" class="icon-button" type="button" aria-label="Наступний день" data-tooltip="Наступний день">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+    </div>
+
+    <div class="control-group">
+      <span class="control-label">Метрика</span>
+      <div class="segmented metric-switch" role="group" aria-label="Метрика карти">
+        <button type="button" data-metric="minutes" class="is-active">Хвилини</button>
+        <button type="button" data-metric="count">Кількість</button>
+        <button type="button" data-metric="night">Нічні</button>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <span class="control-label">Рівень</span>
+      <div class="segmented granularity-switch" role="group" aria-label="Адміністративний рівень">
+        <button type="button" data-level="oblast" class="is-active">Області</button>
+        <button type="button" data-level="raion">Райони</button>
+      </div>
+      <p id="raion-hint" class="helper">Районний режим доступний з 1 грудня 2025 року.</p>
+    </div>
+
+    <div class="map-legend" aria-label="Легенда карти">
+      <div class="legend-header"><span id="legend-title">Хвилини під тривогою</span><span id="legend-range">0–720+</span></div>
+      <div class="legend-ramp"></div>
+      <div class="legend-labels"><span>менше</span><span>більше</span></div>
+    </div>
+
+    <a class="method-link" href="report.html#archive-method">Як це пораховано</a>
+  </section>
+
+  <aside class="map-summary" aria-live="polite">
+    <span class="summary-date" id="summary-date">—</span>
+    <div class="summary-grid">
+      <div><span>Активні регіони</span><strong id="active-regions">—</strong></div>
+      <div><span>Регіон-лідер</span><strong id="leading-region">—</strong></div>
+      <div><span id="summary-metric-label">Сума регіон-хвилин</span><strong id="metric-total">—</strong></div>
+    </div>
+  </aside>
+
+  <div id="history-loading" class="map-loading" role="status">
+    <div class="skeleton-line wide"></div><div class="skeleton-line"></div>
+  </div>
+</main>
+
+<script src="assets/history.js"></script>
+```

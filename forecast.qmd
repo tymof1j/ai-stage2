@@ -1,0 +1,61 @@
+---
+title: "Прогноз навантаження на 3–6 годин"
+description: "Короткостроковий snapshot-nowcast частки районів під тривогою з оцінкою невизначеності та backtesting."
+page-layout: full
+title-block-banner: false
+---
+
+```{=html}
+
+<main class="analysis-page forecast-page">
+  <div class="snapshot-banner" role="note">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 9v4m0 4h.01M10.3 3.7 2.6 17a2 2 0 0 0 1.73 3h15.34a2 2 0 0 0 1.73-3L13.7 3.7a2 2 0 0 0-3.4 0Z"/></svg>
+    <div><strong>Snapshot forecast, не live.</strong> <span id="snapshot-copy">Прогноз прив’язано до останньої повної години CSV.</span></div>
+  </div>
+
+  <header class="analysis-hero forecast-hero">
+    <div>
+      <div class="eyebrow"><span class="status-mark is-stale"></span> Модельний експеримент · горизонти 1–6 год</div>
+      <h1>Навантаження системи оповіщення</h1>
+      <p class="hero-lead">Модель оцінює частку моніторених районів, які перебуватимуть під тривогою. Вона не прогнозує удари й не є сигналом безпеки.</p>
+    </div>
+    <div class="forecast-metrics">
+      <div><span>Через 3 години</span><strong id="forecast-3h">—</strong><small id="forecast-3h-range">—</small></div>
+      <div><span>Через 6 годин</span><strong id="forecast-6h">—</strong><small id="forecast-6h-range">—</small></div>
+    </div>
+  </header>
+
+  <section class="forecast-chart-section">
+    <div class="section-heading">
+      <div><span class="section-index">01</span><h2>Останні 48 годин і горизонт моделі</h2></div>
+      <p>Лінія — фактична частка районів; діапазон після snapshot — 80% емпіричний інтервал.</p>
+    </div>
+    <div id="forecast-chart" class="svg-chart forecast-chart" aria-label="Графік історичного та прогнозованого системного навантаження"></div>
+  </section>
+
+  <section class="forecast-detail-grid">
+    <div>
+      <span class="section-index">02</span>
+      <h2>Чи є skill понад baseline</h2>
+      <p>Перевірка на останніх 30 днях порівнює autoregressive ridge із persistence та “та сама година вчора”.</p>
+      <div id="forecast-evaluation" class="evaluation-list"></div>
+    </div>
+    <aside class="limitation-panel">
+      <span class="section-index">03</span>
+      <h2>Чому прогноз застаріває</h2>
+      <p>CSV є періодичним snapshot. Для переобчислення після кожної зміни статусу потрібен live API token; доступ видається після розгляду заявки й не включений у цей репозиторій.</p>
+      <ul>
+        <li>Модель знає лише історію тривог, без оперативних військових сигналів.</li>
+        <li>Після останнього часу в CSV прогноз не оновлюється автоматично.</li>
+        <li>Чим довший горизонт, тим ширша практична невизначеність.</li>
+      </ul>
+      <a class="method-link" href="report.html#forecast-method">Модель, backtest і API limitation</a>
+    </aside>
+  </section>
+
+  <div class="safety-note"><strong>Не використовуйте цей прогноз для рішень про укриття.</strong> Орієнтуйтеся лише на офіційні сповіщення та сигнал відбою.</div>
+  <div id="forecast-loading" class="content-loading" role="status"><div class="skeleton-block"></div></div>
+</main>
+
+<script src="assets/forecast.js"></script>
+```

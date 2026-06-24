@@ -1,0 +1,73 @@
+---
+title: "Ефект районних тривог"
+description: "Контрфактична оцінка район-хвилин, яких вдалося уникнути після переходу до локалізованих попереджень."
+page-layout: full
+title-block-banner: false
+---
+
+```{=html}
+
+<main class="analysis-page savings-page">
+  <header class="analysis-hero">
+    <div>
+      <div class="eyebrow"><span class="status-mark"></span> Контрфактичний аналіз · з 01.12.2025</div>
+      <h1>Ціна точнішої тривоги</h1>
+      <p class="hero-lead">Скільки сукупного часу райони не перебували під попередженням завдяки переходу від обласного до локального рівня.</p>
+    </div>
+    <div class="hero-metric">
+      <span>Збережено</span>
+      <strong id="saved-hours">—</strong>
+      <small>район-годин у спостережуваному періоді</small>
+    </div>
+  </header>
+
+  <section class="analysis-strip" aria-label="Головні результати">
+    <div><span>Частка контрфактичного навантаження</span><strong id="saved-percent">—</strong></div>
+    <div><span>Період оцінки</span><strong id="savings-period">—</strong></div>
+    <div><span>Найбільший абсолютний ефект</span><strong id="top-oblast">—</strong></div>
+  </section>
+
+  <section class="map-analysis-grid">
+    <div class="map-frame">
+      <div id="savings-map" class="analysis-map" aria-label="Карта заощаджених район-годин"></div>
+      <div class="floating-legend">
+        <span>Частка збережених район-хвилин</span>
+        <div class="legend-ramp"></div>
+        <div class="legend-labels"><span>0%</span><span>70%+</span></div>
+      </div>
+    </div>
+    <div class="method-note">
+      <span class="section-index">01</span>
+      <h2>Що означає “збережено”</h2>
+      <p>Для кожної хвилини з локальною тривогою ми порівнюємо фактичну кількість районів під попередженням із контрфактом, де тривога оголошена в усіх районах області.</p>
+      <div class="formula">
+        <span>saved<sub>t</sub></span>
+        <strong>=</strong>
+        <span>N<sub>oblast</sub> − N<sub>alerted,t</sub></span>
+      </div>
+      <p class="helper">Це район-хвилини, а не “безпечні хвилини”. Аналіз не оцінює реальну загрозу чи якість військового рішення.</p>
+      <a class="method-link" href="report.html#counterfactual-method">Повна методологія та обмеження</a>
+    </div>
+  </section>
+
+  <section class="chart-section">
+    <div class="section-heading">
+      <div><span class="section-index">02</span><h2>Накопичений ефект</h2></div>
+      <p>Сукупні район-години, яких не було б за суцільного обласного попередження.</p>
+    </div>
+    <div id="savings-chart" class="svg-chart" aria-label="Графік накопичених заощаджених район-годин"></div>
+  </section>
+
+  <section class="ranking-section">
+    <div class="section-heading">
+      <div><span class="section-index">03</span><h2>Області з найбільшим ефектом</h2></div>
+      <p>Абсолютний результат залежить і від кількості районів, і від тривалості локальних попереджень.</p>
+    </div>
+    <div id="savings-ranking" class="ranking-table"></div>
+  </section>
+
+  <div id="savings-loading" class="content-loading" role="status"><div class="skeleton-block"></div></div>
+</main>
+
+<script src="assets/savings.js"></script>
+```
