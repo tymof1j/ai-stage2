@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const A = window.AlertAtlas;
   const loading = document.getElementById("forecast-loading");
   try {
-    const data = await A.fetchJSON("site-data/forecast.json");
+    const data = await A.fetchJSON("site-data/forecast.json?v=2");
     renderSnapshot(data);
     renderMetrics(data);
     renderChart(data);
