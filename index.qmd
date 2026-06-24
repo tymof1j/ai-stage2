@@ -52,7 +52,13 @@ title-block-banner: false
       <div class="legend-labels"><span>менше</span><span>більше</span></div>
     </div>
 
-    <a class="method-link" href="report.html#archive-method">Як це пораховано</a>
+    <div class="map-panel-footer">
+      <button id="map-reset" class="reset-view" type="button" aria-label="Показати всю карту України">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8V4h4M20 8V4h-4M4 16v4h4M20 16v4h-4"/></svg>
+        <span>Повна карта</span>
+      </button>
+      <a class="method-link" href="report.html#archive-method">Як це пораховано</a>
+    </div>
   </section>
 
   <aside class="map-summary" aria-live="polite">
@@ -69,5 +75,33 @@ title-block-banner: false
   </div>
 </main>
 
-<script src="assets/history.js"></script>
+<section class="chapter-overview" aria-labelledby="chapters-title">
+  <div class="chapter-copy">
+    <span class="section-index">00</span>
+    <h2 id="chapters-title">Три аналітичні глави</h2>
+    <p>Проєкт не намагається “вгадати війну”. Він розділяє задачу на три рівні, де кожен наступний шар спирається на попередній: спершу чистий архів, потім вимірювання ефекту рішення, і лише після цього обережний короткий прогноз агрегованого навантаження.</p>
+  </div>
+  <div class="chapter-list">
+    <article>
+      <span>01 · Архів</span>
+      <h3>Що відбувалося день за днем</h3>
+      <p>Історична карта показує, де й коли накопичувалось навантаження тривог. Це базова перевірка якості даних і спосіб побачити регіональні патерни без модельних припущень.</p>
+      <a href="index.html">Відкрити архів</a>
+    </article>
+    <article>
+      <span>02 · Локалізація</span>
+      <h3>Скільки часу не було “зайвої” тривоги</h3>
+      <p>Контрфакт порівнює фактичні районні попередження з режимом, де ті самі події були б обласними. Це дає вимір політики оповіщення у район-годинах, а не в загальних враженнях.</p>
+      <a href="savings.html">Оцінити ефект</a>
+    </article>
+    <article>
+      <span>03 · Прогноз</span>
+      <h3>Навантаження на 3–6 годин</h3>
+      <p>Серед прогнозних варіантів це найкорисніший і водночас найменш ризикований target: модель не прогнозує удари чи конкретні місця, а оцінює агреговану частку районів під тривогою, яку можна чесно backtest-ити.</p>
+      <a href="forecast.html">Подивитися прогноз</a>
+    </article>
+  </div>
+</section>
+
+<script src="assets/history.js?v=4"></script>
 ```

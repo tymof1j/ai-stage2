@@ -35,7 +35,6 @@ website:
 format:
   html:
     theme: darkly
-    css: assets/styles.css
     lang: uk
     toc: false
     smooth-scroll: true
@@ -45,4 +44,5 @@ format:
         <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-        <script src="assets/common.js"></script>
+        <script src="assets/common.js?v=4"></script>
+        <link rel="stylesheet" href="assets/styles.css?v=4">

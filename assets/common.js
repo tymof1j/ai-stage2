@@ -49,6 +49,15 @@ window.AlertAtlas = (() => {
       attributionControl: true,
       minZoom: options.minZoom || 5,
       maxZoom: options.maxZoom || 9,
+      zoomSnap: options.zoomSnap ?? 0.25,
+      zoomDelta: options.zoomDelta ?? 0.5,
+      wheelPxPerZoomLevel: options.wheelPxPerZoomLevel ?? 180,
+      wheelDebounceTime: 80,
+      scrollWheelZoom: options.scrollWheelZoom ?? false,
+      touchZoom: options.touchZoom ?? "center",
+      doubleClickZoom: options.doubleClickZoom ?? false,
+      boxZoom: false,
+      bounceAtZoomLimits: false,
       preferCanvas: true,
       ...options,
     }).setView(options.center || [48.75, 31.4], options.zoom || 6);
@@ -81,4 +90,3 @@ window.AlertAtlas = (() => {
     scaleColor,
   };
 })();
-

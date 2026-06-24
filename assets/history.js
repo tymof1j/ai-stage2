@@ -24,12 +24,13 @@ document.addEventListener("DOMContentLoaded", async () => {
       A.fetchJSON("site-data/ukraine_admin1.geojson"),
       A.fetchJSON("site-data/ukraine_admin2.geojson"),
     ]);
-    map = A.createMap("history-map", { zoom: 6, minZoom: 5, maxZoom: 9 });
+    map = A.createMap("history-map", { zoom: 5.25, minZoom: 4, maxZoom: 8 });
     dateInput.min = history.first_date;
     dateInput.max = history.last_date;
     dateInput.value = history.last_date;
     update();
     loading.hidden = true;
+    setupResizeHandling();
   } catch (error) {
     console.error(error);
     A.errorState(loading, error.message);
@@ -82,10 +83,30 @@ document.addEventListener("DOMContentLoaded", async () => {
   function updateLayer() {
     if (layer) layer.remove();
     layer = L.geoJSON(geo[level], { style: styleFeature, onEachFeature, smoothFactor: 1.5 }).addTo(map);
-    if (!fitted) {
-      map.fitBounds(layer.getBounds(), { padding: [24, 24] });
-      fitted = true;
-    }
+    if (!fitted) fitToLayer();
+  }
+
+  function fitToLayer() {
+    if (!layer || !map) return;
+    map.invalidateSize({ pan: false });
+    const mobile = window.matchMedia("(max-width: 767px)").matches;
+    map.fitBounds(layer.getBounds(), mobile
+      ? { paddingTopLeft: [14, 154], paddingBottomRight: [14, 286], maxZoom: 4.65 }
+      : { paddingTopLeft: [410, 42], paddingBottomRight: [124, 42], maxZoom: 5.15 });
+    fitted = true;
+  }
+
+  function setupResizeHandling() {
+    if (!map) return;
+    const observer = new ResizeObserver(() => {
+      map.invalidateSize({ pan: false });
+      if (!fitted) fitToLayer();
+    });
+    observer.observe(document.querySelector(".map-page"));
+    window.addEventListener("resize", () => {
+      fitted = false;
+      fitToLayer();
+    });
   }
 
   function updateSummary() {
@@ -140,6 +161,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   dateInput.addEventListener("change", update);
   document.getElementById("date-prev").addEventListener("click", () => shiftDate(-1));
   document.getElementById("date-next").addEventListener("click", () => shiftDate(1));
+  document.getElementById("map-reset").addEventListener("click", () => { fitted = false; fitToLayer(); });
   metricButtons.forEach((button) => button.addEventListener("click", () => { metric = button.dataset.metric; update(); }));
   levelButtons.forEach((button) => button.addEventListener("click", () => {
     if (!button.disabled) { level = button.dataset.level; fitted = false; update(); }
@@ -149,4 +171,3 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (event.key === "ArrowRight") shiftDate(1);
   });
 });
-

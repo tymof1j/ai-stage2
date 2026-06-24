@@ -30,6 +30,17 @@ title-block-banner: false
     </div>
   </header>
 
+  <section class="model-rationale" aria-labelledby="model-rationale-title">
+    <span class="section-index">00</span>
+    <h2 id="model-rationale-title">Чому прогнозуємо саме навантаження</h2>
+    <p>Серед розглянутих прогнозних задач цей target має найвищу практичну корисність і найменшу ймовірність помилитися “ефектно”: він не вгадує конкретний удар, тип загрози чи район. Модель прогнозує агреговану частку районів під тривогою, тобто стабільніший часовий ряд, який можна чесно перевірити на минулих 30 днях.</p>
+    <div class="model-rationale-grid">
+      <div><span>Target</span><strong>частка районів під тривогою</strong></div>
+      <div><span>Корисність</span><strong>планування навантаження на 3–6 год</strong></div>
+      <div><span>Ризик</span><strong>нижчий, бо немає прогнозу місця удару</strong></div>
+    </div>
+  </section>
+
   <section class="forecast-chart-section">
     <div class="section-heading">
       <div><span class="section-index">01</span><h2>Останні 48 годин і горизонт моделі</h2></div>

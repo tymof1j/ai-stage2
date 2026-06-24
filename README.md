@@ -1,5 +1,7 @@
 # Air Alert Atlas Ukraine
 
+[View the live GitHub Pages site](https://tymof1j.github.io/ai-stage2/)
+
 A reproducible Python and Quarto project for exploring historical air-alert activity in Ukraine, estimating the alert exposure avoided by the transition to raion-level warnings, and producing a short-horizon snapshot forecast of national alert-system load.
 
 ## Three analytical pages
@@ -40,4 +42,3 @@ scripts/        reproducible build entry points
 tests/          interval-algebra regression tests
 *.qmd           Quarto pages and reproducibility report
 ```
-
