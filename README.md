@@ -2,6 +2,12 @@
 
 [View the live GitHub Pages site](https://tymof1j.github.io/ai-stage2/)
 
+## Preview
+
+| Archive map | Localisation effect |
+| --- | --- |
+| ![Archive map page showing daily air-alert load across Ukraine with Crimea marked as a hatched data gap](assets/readme/archive-map.jpg) | ![Localisation effect page showing avoided raion-level alert exposure and the interactive map](assets/readme/localisation-effect.jpg) |
+
 A reproducible Python and Quarto project for exploring historical air-alert activity in Ukraine, estimating the alert exposure avoided by the transition to raion-level warnings, and producing a short-horizon snapshot forecast of national alert-system load.
 
 ## Why this matters for defense tech
