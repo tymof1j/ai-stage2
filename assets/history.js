@@ -48,6 +48,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   function styleFeature(feature) {
+    if (A.isCrimeaFeature(feature)) {
+      return A.crimeaStyle(level === "oblast" ? 1.15 : 0.7);
+    }
     const { id } = featureMeta(feature);
     const values = currentDateData()[id];
     const value = values ? values[config[metric].index] : 0;
@@ -62,6 +65,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   function tooltip(feature) {
     const { id, name } = featureMeta(feature);
+    if (A.isCrimeaFeature(feature)) return A.crimeaTooltip(name);
     const values = currentDateData()[id] || [0, 0, 0, 0];
     return `<span class="tooltip-title">${name}</span>
       <span class="tooltip-grid">
@@ -82,7 +86,14 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   function updateLayer() {
     if (layer) layer.remove();
-    layer = L.geoJSON(geo[level], { style: styleFeature, onEachFeature, smoothFactor: 1.5 }).addTo(map);
+    A.ensureCrimeaHatchPattern(map);
+    layer = L.geoJSON(geo[level], {
+      renderer: L.svg({ padding: 0.5 }),
+      style: styleFeature,
+      onEachFeature,
+      smoothFactor: 1.5,
+    }).addTo(map);
+    A.ensureCrimeaHatchPattern(map);
     if (!fitted) fitToLayer();
   }
 

@@ -133,5 +133,5 @@ title-block-banner: false
   </div>
 </section>
 
-<script src="assets/history.js?v=4"></script>
+<script src="assets/history.js?v=5"></script>
 ```

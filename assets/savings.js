@@ -29,10 +29,13 @@ document.addEventListener("DOMContentLoaded", async () => {
   function renderMap(data, geo) {
     const lookup = Object.fromEntries(data.totals.map((row) => [row.id, row]));
     const map = A.createMap("savings-map", { zoom: 6, minZoom: 5, maxZoom: 8 });
+    A.ensureCrimeaHatchPattern(map);
     const thresholds = [10, 20, 35, 50, 65];
     const layer = L.geoJSON(geo, {
+      renderer: L.svg({ padding: 0.5 }),
       smoothFactor: 1.5,
       style: (feature) => {
+        if (A.isCrimeaFeature(feature)) return A.crimeaStyle(1.1);
         const row = lookup[feature.properties.adm1_pcode];
         return {
           color: row ? "rgba(231,232,230,.38)" : "rgba(231,232,230,.1)",
@@ -44,12 +47,15 @@ document.addEventListener("DOMContentLoaded", async () => {
       onEachFeature: (feature, polygon) => {
         const row = lookup[feature.properties.adm1_pcode];
         const name = feature.properties.adm1_name1;
-        polygon.bindTooltip(
-          `<span class="tooltip-title">${name}</span><span class="tooltip-grid">
+        const content = A.isCrimeaFeature(feature)
+          ? A.crimeaTooltip(name)
+          : `<span class="tooltip-title">${name}</span><span class="tooltip-grid">
             <span>Збережено</span><strong>${row ? A.formatNumber(row.saved / 60) : 0} район-год</strong>
             <span>Частка</span><strong>${row ? A.formatNumber(row.saved_pct, 1) : 0}%</strong>
             <span>Еквівалент</span><strong>${row ? A.formatNumber(row.equivalent_hours, 1) : 0} год</strong>
-          </span>`,
+          </span>`;
+        polygon.bindTooltip(
+          content,
           { sticky: true, direction: "top", opacity: 1 }
         );
         polygon.on({
@@ -58,6 +64,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
       },
     }).addTo(map);
+    A.ensureCrimeaHatchPattern(map);
     map.fitBounds(layer.getBounds(), { padding: [20, 20] });
   }
 
@@ -97,4 +104,3 @@ document.addEventListener("DOMContentLoaded", async () => {
     </div>`).join("");
   }
 });
-

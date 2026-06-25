@@ -69,5 +69,5 @@ title-block-banner: false
   <div id="savings-loading" class="content-loading" role="status"><div class="skeleton-block"></div></div>
 </main>
 
-<script src="assets/savings.js"></script>
+<script src="assets/savings.js?v=2"></script>
 ```
